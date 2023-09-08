@@ -3,7 +3,7 @@
 
 
 import sys 
-from pdf_functions import pdf_merger
+from pdf_functions import pdf_merger, pdf_watermarker
 
 pdf_list = []
 
@@ -13,3 +13,8 @@ except:
     print("Failed to provide pdfs")
 
 pdf_merger(pdf_list, 'documents')
+
+pdf_watermarker('wtr.pdf', 'super.pdf', 'documents')
+
+
+
