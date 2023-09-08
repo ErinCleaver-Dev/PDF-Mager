@@ -3,36 +3,21 @@
 
 import PyPDF2 
 import pathlib 
+import sys 
 
 
-# filepath = pathlib.Path(__file__).parent / "documents\twopage.pdf"
+pdf_list = []
 
-# with open(filepath, 'rb') as file:
-#     reader = PyPDF2.PdfReader(file)
-#     # to get the number of pages use len(reder.pages)
-#     print(len(reader.pages))
+try:
+    pdf_list = sys.argv[1:]
+except:
+    print("Failed to provide pdfs")
 
-filepath = pathlib.Path(__file__).parent / "documents\onepage.pdf"
+def pdf_merger(pdf_list: list):
+    merger = PyPDF2.PdfMerger()
+    for pdf in pdf_list:
+        path = pathlib.Path(__file__).parent / f"documents/{pdf}"
+        merger.append(path)
+    merger.write('super.pdf')
 
-with open(filepath, 'rb') as file:
-    reader = PyPDF2.PdfReader(file)
-    # to get the number of pages use len(reder.pages)
-    # print(len(reader.pages))
-    # to get page the first page type in pages[0] since it is a list of objects
-    print(reader.pages[0])
-
-    page = reader.pages[0]
-    page.rotate(90)
-    writer = PyPDF2.PdfWriter()
-    writer.add_page(page)
-    # the newest verison 3.0 has changed it to rotate
-    with open('documents/route.pdf', 'wb') as new_file:
-        writer.write(new_file)
-
-
-                        
-
-
-
-
-
+pdf_merger(pdf_list)
