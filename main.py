@@ -4,7 +4,7 @@
 import PyPDF2 
 import pathlib 
 
-filepath = pathlib.Path(__file__).parent / "documents\dummy.pdf"
+filepath = pathlib.Path(__file__).parent / "documents\\twopage.pdf"
 
 with open(filepath, 'rb') as file:
     reader = PyPDF2.PdfReader(file)
